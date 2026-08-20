@@ -1,14 +1,27 @@
 {
-  "name": "crud_aprendices",
+  "name": "Crud_Aprendices",
   "version": "1.0.0",
-  "description": "",
+  "description": "introduccion a express ficha 3407184",
+  "keywords": [],
+  "homepage": "https://github.com/EileenSanchez1/Crud_Aprendices_Nuevo.git#readme",
+  "bugs": {
+    "url": "https://github.com/EileenSanchez1/Crud_Aprendices_Nuevo.git/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EileenSanchez1/Crud_Aprendices_Nuevo.git"
+  },
+  "license": "ISC",
+  "author": "eileen",
+  "type": "commonjs",
   "main": "index.js",
   "scripts": {
+    "dev": "node --watch app.js",
+    "produccion": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "type": "commonjs",
   "dependencies": {
+    "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1"
   }

@@ -1,0 +1,13 @@
+[{
+    "Nombre":"Juan",
+    "Apellido":"Perez",
+    "Edad":25,
+    "Correo":"juanperez@gmail.com",
+    "Avatar":"imagenes/juan.jpg"
+},{
+    "Nombre":"Eileen",
+    "Apellido":"Sanchez",
+    "Edad":18,
+    "Correo":"eileens@gmail.com",
+    "Avatar":"imagenes/eileen.jpg"
+}]
