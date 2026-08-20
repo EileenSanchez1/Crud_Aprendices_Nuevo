@@ -1,13 +1,65 @@
-[{
-    "Nombre":"Juan",
-    "Apellido":"Perez",
-    "Edad":25,
-    "Correo":"juanperez@gmail.com",
-    "Avatar":"imagenes/juan.jpg"
-},{
-    "Nombre":"Eileen",
-    "Apellido":"Sanchez",
-    "Edad":18,
-    "Correo":"eileens@gmail.com",
-    "Avatar":"imagenes/eileen.jpg"
-}]
+[
+  {
+    "dni": 2,
+    "Nombre": "Sofia",
+    "Apellido": "Sanchez",
+    "Edad": 18,
+    "Correo": "sofias@gmail.com",
+    "Avatar": "imagenes/eileen.jpg"
+  },
+  {
+    "dni": 4,
+    "Nombre": "Joshua",
+    "Apellido": "Perez",
+    "Edad": 20,
+    "Correo": "joshua@gmail.com",
+    "Avatar": "imagenes/joshua.jpg"
+  },
+  {
+    "dni": 5,
+    "Nombre": "Santiago",
+    "Apellido": "Lopez",
+    "Edad": 21,
+    "Correo": "santiago@gmail.com",
+    "Avatar": "imagenes/santiago.jpg"
+  },
+  {
+    "Nombre": "Camila",
+    "Apellido": "Rojas",
+    "Edad": 22,
+    "Correo": "camilar@gmail.com",
+    "Avatar": "imagenes/camila.jpg"
+  },
+  {
+    "dni": 6,
+    "Nombre": "Camilo",
+    "Apellido": "Rojas",
+    "Edad": 22,
+    "Correo": "camiloo@gmail.com",
+    "Avatar": "imagenes/camilo.jpg"
+  },
+  {
+    "dni": 7,
+    "Nombre": "Juan Camilo",
+    "Apellido": "Sanchez",
+    "Edad": 22,
+    "Correo": "juancamiloosan@gmail.com",
+    "Avatar": "imagenes/camilo.jpg"
+  },
+  {
+    "dni": 8,
+    "Nombre": "Juan Camilo",
+    "Apellido": "Sanchez",
+    "Edad": 22,
+    "Correo": "juancamiloosan@gmail.com",
+    "Avatar": "imagenes/camilo.jpg"
+  },
+  {
+    "dni": 10,
+    "Nombre": "Daniel",
+    "Apellido": "Sierra",
+    "Edad": 28,
+    "Correo": "daniELsierra@gmail.com",
+    "Avatar": "imagenes/dani.ELjpg"
+  }
+]
