@@ -61,5 +61,13 @@
     "Edad": 28,
     "Correo": "daniELsierra@gmail.com",
     "Avatar": "imagenes/dani.ELjpg"
+  },
+  {
+    "dni": 11,
+    "Nombre": "Rocio",
+    "Apellido": "Sanchez",
+    "Edad": 45,
+    "Correo": "rociosanchez@gmail.com",
+    "Avatar": "imagenes/rocio.jpg"
   }
 ]
