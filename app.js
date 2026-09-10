@@ -3,7 +3,7 @@ const registroMiddleware = require("./middleware/registroMiddleware");
 const manejadorErrores = require("./middleware/manejadorErrores");
 const autenticarToken = require("./middleware/autenticar");
 const jwtoken = require('jsonwebtoken');
-const { validarAprendiz } = require('./validaciones/validar.js');
+//const { validarAprendiz } = require('./validaciones/validar.js');
 const sistemaArchivo = require('fs');
 const ruta = require('path');
 const multer = require('multer');
@@ -37,7 +37,7 @@ const cargar = multer({ storage: almacenamiento });
 app.use('/misimagenes', express.static(ruta.join(__dirname, 'misimagenes')));
 
 // Middleware de validación
-app.use(validarAprendiz);
+//app.use(validarAprendiz);
 
 const rutaArchivoJson = ruta.join(__dirname, 'listaDatos.json');
 
@@ -210,7 +210,7 @@ app.post("/inicio", (req, res) => {
         });
     }
 
-    const token = jwtoken.sing(
+    const token = jwtoken.sign(
         {user: usuario},
         process.env.JWT_SECRET,
         {expiresIn:"1h"}
