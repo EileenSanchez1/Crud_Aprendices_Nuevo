@@ -69,5 +69,50 @@
     "Edad": 45,
     "Correo": "rociosanchez@gmail.com",
     "Avatar": "imagenes/rocio.jpg"
+  },
+  {
+    "dni": 12,
+    "Nombre": "Sofia",
+    "Apellido": "Vargas",
+    "Edad": 18,
+    "Correo": "vargas@gmail.com",
+    "Avatar": "imagenes/vargasofia.jpg",
+    "avatar": "sin imagen"
+  },
+  {
+    "dni": 13,
+    "Nombre": "Santiago",
+    "Apellido": "Vanegas",
+    "Edad": 23,
+    "Correo": "vanegas@gmail.com",
+    "Avatar": "imagenes/vanegasanti.jpg",
+    "avatar": "sin imagen"
+  },
+  {
+    "dni": 14,
+    "Nombre": "Santiago",
+    "Apellido": "Vanegas",
+    "Edad": 23,
+    "Correo": "vanegas@gmail.com",
+    "Avatar": "imagenes/vanegasanti.jpg",
+    "avatar": "sin imagen"
+  },
+  {
+    "dni": 15,
+    "Nombre": "Santiago",
+    "Apellido": "Vanegas",
+    "Edad": 23,
+    "Correo": "vanegas@gmail.com",
+    "Avatar": "imagenes/vanegasanti.jpg",
+    "avatar": "sin imagen"
+  },
+  {
+    "dni": 16,
+    "Nombre": "Santiago",
+    "Apellido": "Vanegas",
+    "Edad": 23,
+    "Correo": "vanegas@gmail.com",
+    "Avatar": "imagenes/vanegasanti.jpg",
+    "avatar": "sin imagen"
   }
 ]

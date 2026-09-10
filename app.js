@@ -1,23 +1,34 @@
 const express = require('express');
-const app = express();
-require('dotenv/config');
-const port = process.env.PUERTO || 5000;
-
-// Librerías para archivos y rutas
+const registroMiddleware = require("./middleware/registroMiddleware");
+const manejadorErrores = require("./middleware/manejadorErrores");
+const autenticarToken = require("./middleware/autenticar");
+const jwtoken = require('jsonwebtoken');
+const { validarAprendiz } = require('./validaciones/validar.js');
 const sistemaArchivo = require('fs');
 const ruta = require('path');
 const multer = require('multer');
 
-// Configurar almacenamiento de imágenes con Multer
+require('dotenv/config');
+
+const app = express();
+const port = process.env.PUERTO || 5000;
+
+// Parsers para el body
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Registrador de peticiones HTTP
+app.use(registroMiddleware);
+
+// Configuración de Multer para archivos
 const almacenamiento = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'misimagenes/');
-  },
-  filename: (req, file, cb) => {
-    // Asigna un nombre único usando la fecha + extensión original
-    const extension = ruta.extname(file.originalname);
-    cb(null, `${Date.now()}${extension}`);
-  }
+    destination: (req, file, cb) => {
+        cb(null, 'misimagenes/');
+    },
+    filename: (req, file, cb) => {
+        const extension = ruta.extname(file.originalname);
+        cb(null, `${Date.now()}${extension}`);
+    }
 });
 
 const cargar = multer({ storage: almacenamiento });
@@ -25,16 +36,13 @@ const cargar = multer({ storage: almacenamiento });
 // Servir la carpeta de imágenes de forma pública
 app.use('/misimagenes', express.static(ruta.join(__dirname, 'misimagenes')));
 
-// Body-parser para interpretar JSON
-app.use(express.json());
-
-// Importar la validación e integrarla
-const { validarAprendiz } = require('./validaciones/validar.js');
+// Middleware de validación
 app.use(validarAprendiz);
 
 const rutaArchivoJson = ruta.join(__dirname, 'listaDatos.json');
 
-// Ruta Raíz
+// --- RUTAS DE LA API ---
+
 app.get('/', (req, res) => {
     res.send('API RESTFUL - CRUD Aprendices');
 });
@@ -77,11 +85,10 @@ app.get('/api/aprendices/:dni', (req, res) => {
     });
 });
 
-// Endpoint para crear un aprendiz con foto opcional (Multer) y DNI autoincremental
+// Endpoint para crear un aprendiz
 app.post("/api/aprendices", cargar.single("imagen"), (req, res) => {
-    const datoAprendiz = req.body;
+    const datosAprendiz = req.body;
 
-    // Asignar ruta de imagen o valor por defecto
     datosAprendiz.avatar = req.file ? `/misimagenes/${req.file.filename}` : "sin imagen";
 
     sistemaArchivo.readFile(rutaArchivoJson, "utf-8", (error, datos) => {
@@ -91,7 +98,6 @@ app.post("/api/aprendices", cargar.single("imagen"), (req, res) => {
         try {
             const listaAprendices = JSON.parse(datos);
 
-            // DNI autoincremental
             const ultimoDni = listaAprendices.reduce((max, aprendiz) => {
                 const id = Number(aprendiz.dni);
                 return (!isNaN(id) && id > max) ? id : max;
@@ -99,8 +105,7 @@ app.post("/api/aprendices", cargar.single("imagen"), (req, res) => {
 
             const nuevoAprendiz = {
                 dni: ultimoDni + 1,
-                ...datoAprendiz,
-                avatar
+                ...datosAprendiz
             };
 
             listaAprendices.push(nuevoAprendiz);
@@ -180,7 +185,43 @@ app.delete("/api/aprendices/:dni", (req, res) => {
     });
 });
 
-// Modo de escucha del servidor
+// Ruta de prueba para simular un error
+app.get("/error", (req, res, next) => {
+    next(new Error("Error Provocado"));
+});
+
+//ruta protegida
+app.get("/protegida", autenticarToken, (req, res) => {
+    res.json({mensaje: "Esta es una ruta protegida"})
+});
+
+// Endpoint de inicio de sesion
+app.post("/inicio", (req, res) => {
+    const { usuario, clave } = req.body;
+
+    const usuarioid = {
+        "usuario":"eileen",
+        "clave":"eileen123"
+    }
+
+    if (usuario !== usuarioid.usuario || clave !== usuarioid.clave) {
+        res.json({
+            mensaje: "Usuario y/o clave incorrecto",
+        });
+    }
+
+    const token = jwtoken.sing(
+        {user: usuario},
+        process.env.JWT_SECRET,
+        {expiresIn:"1h"}
+    )
+    res.json({token})
+});
+
+//use errores
+app.use(manejadorErrores);
+
+// Servidor
 app.listen(port, () => {
     console.log(`SERVER: http://localhost:${port}`);
 });
