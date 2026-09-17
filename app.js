@@ -1,9 +1,9 @@
 const express = require('express');
-const registroMiddleware = require("./middleware/registroMiddleware");
-const manejadorErrores = require("./middleware/manejadorErrores");
-const autenticarToken = require("./middleware/autenticar");
+const registroMiddleware = require("./src/middleware/registroMiddleware");
+const manejadorErrores = require("./src/middleware/manejadorErrores");
+const autenticarToken = require("./src/middleware/autenticar");
 const jwtoken = require('jsonwebtoken');
-//const { validarAprendiz } = require('./validaciones/validar.js');
+const { validarAprendiz } = require('./src/utileria/validar.js');
 const sistemaArchivo = require('fs');
 const ruta = require('path');
 const multer = require('multer');
